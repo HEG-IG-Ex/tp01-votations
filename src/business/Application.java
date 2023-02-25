@@ -3,14 +3,12 @@ package business;
 import dao.FileToStr;
 import domaine.Result;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.NoSuchElementException;
+import java.lang.reflect.Array;
+import java.util.*;
 
 
 public class Application {
-    static Collection<Result> results = new ArrayList<>();
+    static ArrayList<Result> results = new ArrayList<>();
 
     public Application(){
         chargerResultats();
@@ -62,7 +60,7 @@ public class Application {
 
         Result largerMunicipality = results
                 .stream()
-                .min(Comparator.comparing(Result::getNbElecteurs))
+                .max(Comparator.comparing(Result::getNbElecteurs))
                 .orElseThrow(NoSuchElementException::new);
 
         System.out.println("Plus grande commune : " +largerMunicipality.toString());
@@ -70,6 +68,10 @@ public class Application {
 
     /** Affiche tous les résultats, triés par nom de commune */
     private static void afficherParOrdreAlphabetique() {
+        Collections.sort(results);
+        for (Result result : results) {
+            System.out.println(result.toString());
+        }
     }
 
     /** Affiche tous les résultats, triés du plus grand taux de participation au plus petit */
