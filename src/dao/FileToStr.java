@@ -1,3 +1,5 @@
+package dao;
+
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -124,4 +126,4 @@ public class FileToStr {
       catch (IOException e1) {e1.printStackTrace();}
    }
 
-} // dao.FileToStr
+} // dao.dao.FileToStr
