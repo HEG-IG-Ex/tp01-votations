@@ -1,6 +1,7 @@
 package business;
 
 import dao.FileToStr;
+import domaine.ParticipationRateComparator;
 import domaine.Result;
 
 import java.lang.reflect.Array;
@@ -69,13 +70,19 @@ public class Application {
     /** Affiche tous les résultats, triés par nom de commune */
     private static void afficherParOrdreAlphabetique() {
         Collections.sort(results);
-        for (Result result : results) {
-            System.out.println(result.toString());
-        }
+        displayRecords();
     }
 
     /** Affiche tous les résultats, triés du plus grand taux de participation au plus petit */
     private static void afficherParParticipation() {
+        results.sort(new ParticipationRateComparator());
+        displayRecords();
+    }
+
+    private static void displayRecords(){
+        for (Result result : results) {
+            System.out.println(result.toString());
+        }
     }
 
 }

@@ -25,6 +25,22 @@ public class Result implements Comparable<Result>{
         return nbElecteurs;
     }
 
+    public int getNbOui() {
+        return nbOui;
+    }
+
+    public int getNbNon() {
+        return nbNon;
+    }
+
+    public int getNbBlanc() {
+        return nbBlanc;
+    }
+
+    public int calculateParticipationRate(){
+        return 100 * (this.getNbOui() + this.getNbNon() + this.getNbBlanc()) / this.getNbElecteurs();
+    }
+
     @Override
     public int compareTo(Result o) {
         return this.getCommune().compareToIgnoreCase(o.getCommune());
@@ -32,7 +48,7 @@ public class Result implements Comparable<Result>{
 
     @Override
     public String toString() {
-        return commune + " (" + nbElecteurs + " électeurs, participation: ?????%) : " + nbOui + " oui, " + nbNon + " non";
+        return commune + " (" + nbElecteurs + " électeurs, participation: " + this.calculateParticipationRate() + "%) : " + nbOui + " oui, " + nbNon + " non";
     }
 
     @Override
